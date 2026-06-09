@@ -1,3 +1,31 @@
+import streamlit as st
+import streamlit.components.v1 as components
+
+# Streamlit 페이지 기본 설정
+st.set_page_config(
+    page_title="Square Root Drop",
+    page_icon="🎮",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
+
+# Streamlit 기본 여백을 줄여 게임 화면을 최대한 크게 만들기 위한 CSS
+st.markdown("""
+    <style>
+        .block-container {
+            padding-top: 1rem;
+            padding-bottom: 0rem;
+            padding-left: 0rem;
+            padding-right: 0rem;
+        }
+        iframe {
+            border-radius: 10px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# 제작하신 게임의 전체 HTML/CSS/JS 코드를 문자열로 담습니다.
+html_code = """
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -371,7 +399,6 @@
                                 </span>
                             </button>
                             
-                            {/* 제작자 표시 수정: 크기 키우고 더 진하게 */}
                             <div className="absolute bottom-6 right-8 text-neutral-500 font-black text-lg tracking-widest opacity-70">
                                 made by stop1
                             </div>
@@ -511,3 +538,7 @@
     </script>
 </body>
 </html>
+"""
+
+# HTML을 Streamlit 앱 상에 렌더링 (height를 넉넉하게 주어 스크롤 바를 없앱니다)
+components.html(html_code, height=850, scrolling=False)
